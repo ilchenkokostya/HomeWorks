@@ -15,10 +15,10 @@ for n in numbers:
             is_prime = False
             break
 
-    if is_prime:
-        primes.append(n)
-    else:
+    if not is_prime:
         not_primes.append(n)
+    else:
+        primes.append(n)
 
 print("Primes:", primes)
 print("Not Primes:", not_primes)

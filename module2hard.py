@@ -1,4 +1,4 @@
-def generate_password(n):
+def gen_pwd(n):
     result = ""
 
     for i in range(1, n):
@@ -7,10 +7,10 @@ def generate_password(n):
                 result += str(i)+str(j)+' '
     return result
 
-number = 0
-while number < 3 or number > 20:
-    number = int(input("Введите число для пароля от 3 до 20: "))
+num = 0
+while num < 3 or num> 20:
+      num = int(input("Введите число для пароля от 3 до 20: "))
 
-password = generate_password(number)
-print(f"Пароль для числа {number} - {password}")
+pwd = gen_pwd(num)
+print(f"Пароль для числа {num} - {pwd}")
 

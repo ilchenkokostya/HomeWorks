@@ -5,6 +5,6 @@ sort_students = sorted(list(students))
 avg_dict = {}
 
 for i in range(len(grades)):
-     avg_dict[sort_students[i]] = (sum(grades[i])/len(grades[i]))
+    avg_dict[sort_students[i]] = (sum(grades[i]) / len(grades[i]))
 
 print(avg_dict)

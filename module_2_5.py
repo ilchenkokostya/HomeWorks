@@ -7,10 +7,11 @@ def get_matrix(n, m, value):
     for i in range(n):
         matrix_2 = []
         for j in range(m):
-           matrix_2.append(value)
+            matrix_2.append(value)
         matrix.append(matrix_2)
 
     return matrix
+
 
 result1 = get_matrix(2, 2, 10)
 result2 = get_matrix(3, 5, 42)

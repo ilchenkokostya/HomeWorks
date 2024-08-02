@@ -1,11 +1,11 @@
 def single_root_words(root_word, *other_words):
     same_words = []
     for word in other_words:
-        if (                  """ 1 """
+        if (
                 # str(root_word).lower() in str(word).lower()
                 # or
                 # str(word).lower() in str(root_word).lower()
-                              """ 2 """
+
                 str(root_word).lower().count(str(word).lower())
                 or
                 str(word).lower().count(str(root_word).lower())

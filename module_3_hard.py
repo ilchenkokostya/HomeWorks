@@ -54,5 +54,5 @@ data_structure = [
     "Hello",
     ((), [{(2, 'Urban', ('Urban2', 35))}])
 ]
-
+ 
 print(calculate_structure_sum(data_structure))

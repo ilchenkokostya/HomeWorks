@@ -27,7 +27,6 @@ class House:
         return self.number_of_floors > self.check(other)
 
     def __ge__(self, other):  # >=
-
         return self.number_of_floors >= self.check(other)
 
     def __ne__(self, other):  # !=

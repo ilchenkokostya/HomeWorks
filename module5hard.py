@@ -42,16 +42,13 @@ class UrTube:
                     if video_id in video.title:
                         for i in range(1, 11):
                             print(i, end=' ')
-                            time.sleep(1)
+                            # time.sleep(1)
                         print('Конец видео')
                         break
                 else:
                     print('Видео не найдено')
         else:
             print('Войдите в аккаунт, чтобы смотреть видео')
-
-    def __str__(self):
-        return f"{self.videos}"
 
 
 class Video:

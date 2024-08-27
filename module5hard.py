@@ -40,8 +40,8 @@ class UrTube:
             else:
                 for video in self.videos:
                     if video_id in video.title:
-                        for i in range(1, 11):
-                            print(i, end=' ')
+                        for i in range(video.duration):
+                            print(i + 1, end=' ')
                             time.sleep(1)
                         print('Конец видео')
                         break

@@ -33,10 +33,10 @@ class UrTube:
         return [item.title for item in self.videos if search.lower() in item.title.lower()]
 
     def watch_video(self, video_id):
-        if self.current_user:
+        if self.current_user:  # если пользователь авторизован
             for video in self.videos:
-                if video_id in video.title:
-                    if video.adult_mode and self.current_user.age < 18:
+                if video_id.lower() in video.title.lower():  # если видео найдено
+                    if video.adult_mode and self.current_user.age < 18:  # проверка ограничения по возрасту
                         print('Вам нет 18 лет, пожалуйста покиньте страницу')
                     else:
                         print(f'Вы смотрите видео "{video.title}"')

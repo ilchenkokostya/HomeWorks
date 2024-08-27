@@ -3,7 +3,7 @@ class House:
 
     def __new__(cls, name, number_of_floors):  # Инициализатор
         cls.houses_history.append(name)
-        return super().__new__(cls)
+        return object.__new__(cls)
 
     def __init__(self, name: str, number_of_floors: int):
         self.name = name

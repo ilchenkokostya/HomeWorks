@@ -2,7 +2,7 @@ class Plant:
     """ растения """
 
     def __init__(self, name: str, edible=False):
-        self.edible = edible
+        self.edible = edible  # съедобность
         self.name = name
 
 
@@ -10,12 +10,16 @@ class Animal:
     """ животные """
 
     def __init__(self, name: str, alive=True, fed=False):
-        self.alive = alive
-        self.fed = fed
+        self.alive = alive  # живой
+        self.fed = fed  # накормленный
         self.name = name
+
+    def __str__(self):
+        return f'{self.name} {'живёт :)' if self.alive else 'погиб :('}'
 
     def eat(self, food):
         if food.edible:
+            self.fed = True  # накормленный
             return print(f'{self.name} съел {food.name}')
         else:
             self.alive = False  # погиб

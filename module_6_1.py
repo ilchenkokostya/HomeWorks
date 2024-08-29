@@ -17,7 +17,7 @@ class Animal:
     def __str__(self):
         return f'{self.name} {'живёт :)' if self.alive else 'погиб :('}'
 
-    def eat(self, food):
+    def eat(self, food: Plant):
         if food.edible:
             self.fed = True  # накормленный
             return print(f'{self.name} съел {food.name}')

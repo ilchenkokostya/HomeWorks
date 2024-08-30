@@ -19,12 +19,6 @@ class Vehicle:  # любой транспорт
     def get_color(self):
         return self.__color
 
-    def print_info(self):
-        print(f'---------\nМодель: {self.get_model()}')
-        print(f'Мощность двигателя: {self.get_horsepower()}')
-        print(f'Цвет: {self.get_color()}')
-        print(f'Владелец: {self.owner}')
-
     def set_color(self, color):  # сетер
         if color.lower() in self.__COLOR_VARIANTS:
             self.__color = color
@@ -32,6 +26,12 @@ class Vehicle:  # любой транспорт
         else:
             print(f'Нельзя сменить цвет на {color}')  # Вызов метода
             return False
+
+    def print_info(self):
+        print(f'---------\nМодель: {self.get_model()}')
+        print(f'Мощность двигателя: {self.get_horsepower()}')
+        print(f'Цвет: {self.get_color()}')
+        print(f'Владелец: {self.owner}')
 
 
 class Sedan(Vehicle):  # седан

@@ -57,7 +57,7 @@ class Figure:
             self._sides = list(new_sides)
             return list(new_sides)
         else:
-            return getattr(self, '_sides', None)
+            return getattr(self, '_sides', None)  # если объект не был создан
 
     def __len__(self):  # периметр фигуры
         return sum(self._sides)
@@ -101,7 +101,7 @@ class Cube(Figure):
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
 
-    def get_volume(self):  # площадь круга
+    def get_volume(self):  # площадь куба
         if self._sides:
             return f'Площадь {self} {6 * self._sides[0] * self._sides[0]}'
         else:

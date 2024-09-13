@@ -22,11 +22,18 @@ class WordsFinder:
             find_word[name] = [i for i, x in enumerate(words, 1) if x == word.lower()]
         return find_word
 
+    # def count(self, word):
+    #     find_count = {}
+    #     for name, values in self.find(word).items():
+    #         find_count[name] = len(values)
+    #     return find_count
+
     def count(self, word):
-        find_count = {}
-        for name, values in self.find(word).items():
-            find_count[name] = len(values)
-        return find_count
+        all_words = self.get_all_words()
+        result = {}
+        for file_name, words in all_words.items():
+            result[file_name] = words.count(word.lower())
+        return result
 
 
 if __name__ == '__main__':

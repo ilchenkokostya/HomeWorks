@@ -17,7 +17,6 @@ def calculate_average(numbers):
         else:
             return 0
     except ZeroDivisionError:
-        print('Коллекция numbers пустая')
         return 0
     except TypeError:
         print('В numbers записан некорректный тип данных')

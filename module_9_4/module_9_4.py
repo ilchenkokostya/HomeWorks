@@ -11,9 +11,7 @@ print(list(map(lambda x, y: x == y, first, second)))
 def get_advanced_writer(file_name, ):
     def write_everything(*data_set):
         with open(file_name, 'w', encoding='utf-8') as file:
-            file.writelines(
-                f"{item}\n" for item in data_set
-            )
+            file.writelines(f"{item}\n" for item in data_set)
 
     return write_everything
 

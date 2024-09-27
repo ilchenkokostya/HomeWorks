@@ -1,4 +1,4 @@
-# Range - это просто
+# "Итераторы"
 class StepValueError(ValueError):
     ...
 

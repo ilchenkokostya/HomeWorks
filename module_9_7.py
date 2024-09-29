@@ -2,13 +2,13 @@
 def is_prime(func):
     def wrapper(a, b, c):
         suma = func(a, b, c)
-        if suma > 1:
+        if type(suma) is int and suma > 1:
             if any((suma % i == 0) for i in range(2, int(suma ** 0.5) + 1)):
                 return f'Составное\n {suma}'
             else:
                 return f'Простое\n {suma}'
         else:
-            return f'Входные параметры: натуральные числа больше единицы'
+            return f'Входные параметры: натуральные числа и сумма больше единицы'
 
     return wrapper
 

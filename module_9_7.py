@@ -4,9 +4,9 @@ def is_prime(func):
         suma = func(a, b, c)
         if type(suma) is int and suma > 1:
             if any((suma % i == 0) for i in range(2, int(suma ** 0.5) + 1)):
-                return f'Составное\n {suma}'
+                return f'Составное \n{suma}'
             else:
-                return f'Простое\n {suma}'
+                return f'Простое \n{suma}'
         else:
             return f'Входные параметры: натуральные числа и сумма больше единицы'
 

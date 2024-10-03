@@ -38,6 +38,7 @@ if __name__ == "__main__":
     t2.join()
     t3.join()
     t4.join()
+
     time_end = datetime.now()
     time_delta = time_end - time_start
     print(f"---Время работы потоков: {time_delta}")

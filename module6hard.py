@@ -112,11 +112,11 @@ class Cube(Figure):
 
 
 if __name__ == '__main__':
-    circle1 = Circle((200, 200, 100), 10)  # (Цвет, стороны)
+    circle1 = Circle((200, 200, 1000), 10)  # (Цвет, стороны)
     cube1 = Cube((222, 35, 130), 6)
 
     # Проверка на изменение цветов:
-    circle1.set_color(55, 66, 77)  # Изменится
+    # circle1.set_color(55, 66, 999)  # Изменится
     print(circle1.get_color())
     cube1.set_color(300, 70, 15)  # Не изменится
     print(cube1.get_color())

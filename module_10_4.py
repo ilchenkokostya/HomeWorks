@@ -30,14 +30,14 @@ class Cafe:
         self.tables = tables
         self.cafe_zal = {}
 
-    def guest_arrival(self, *guests):  # Добавление гостей в очередь
+    def guest_arrival(self, *guests):  # Приём гостей
 
         for guest in guests:
             free_table = next((table for table in self.tables if table.is_free), None)  # Поиск свободного стола
             if free_table:
                 free_table.guests = guest.name
                 print(f'{guest.name} сел(-а) за стол номер {free_table.number}')
-                self.cafe_zal[free_table] = guest
+                self.cafe_zal[free_table] = guest  # Добавление гостя в кафе
                 guest.start()
                 # guest.join()
             else:
@@ -48,7 +48,7 @@ class Cafe:
         while not self.queue.empty():
             queue_guest = self.queue.get()
 
-            while not queue_guest.is_alive():
+            while not queue_guest.is_alive():  # Пока гостью не нашли свободный столик
                 for free_table, free_guest in self.cafe_zal.items():
                     if not free_guest.is_alive():
                         print(f'{free_guest.name} покушал(-а) и ушёл(ушла)')
@@ -74,11 +74,11 @@ if __name__ == '__main__':
 
     # print(*guests)
 
-    # # Заполнение кафе столами
+    # Заполнение кафе столами
     cafe = Cafe(*tables)
     #
-    # # Приём гостей
+    # Приём гостей
     cafe.guest_arrival(*guests)
 
-    # # Обслуживание гостей
+    # Обслуживание гостей
     cafe.discuss_guests()

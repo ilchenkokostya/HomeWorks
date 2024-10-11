@@ -30,8 +30,8 @@ class Cafe:
 
     def guest_arrival(self, *guests):  # Добавление гостей в очередь
         for guest in guests:
-            if any(table.is_free for table in self.tables):  # Если есть свободные столы
-                free_table = next((table for table in self.tables if table.is_free), None)  # Поиск свободного стола
+            free_table = next((table for table in self.tables if table.is_free), None)  # Поиск свободного стола
+            if free_table:  # Если есть свободные столик
                 free_table.guests = guest.name
                 print(f'{guest.name} сел(-а) за стол номер {free_table.number}')
                 guest.start()

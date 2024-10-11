@@ -49,7 +49,7 @@ class Cafe:
             queue_guest = self.queue.get()
 
             while not queue_guest.is_alive():  # Пока гостью не нашли свободный столик
-                for free_table, free_guest in self.cafe_zal.items():
+                for free_table, free_guest in self.cafe_zal.items():  # бегаем по кафе
                     if not free_guest.is_alive():
                         print(f'{free_guest.name} покушал(-а) и ушёл(ушла)')
                         print(f'Стол номер {free_table.number} свободен')

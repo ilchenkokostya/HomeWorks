@@ -28,7 +28,7 @@ class Cafe:
         self.queue = queue.Queue()
         self.tables = tables
 
-    def guest_arrival(self, *guests):  # Добавление гостей в очередь
+    def guest_arrival(self, *guests):  # Приём гостей
         for guest in guests:
             free_table = next((table for table in self.tables if table.is_free), None)  # Поиск свободного стола
             if free_table:  # Если есть свободные столик

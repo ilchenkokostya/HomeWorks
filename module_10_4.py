@@ -18,6 +18,7 @@ class Guest(Thread):  # Гость
     def __init__(self, name):
         super().__init__()
         self.name = name
+        self.ate = False  # Поел или нет
 
     def run(self):
         time.sleep(random.randint(3, 10))
@@ -27,13 +28,16 @@ class Cafe:
     def __init__(self, *tables):
         self.queue = queue.Queue()
         self.tables = tables
+        self.cafe_zal = {}
 
-    def guest_arrival(self, *guests):  # Приём гостей
+    def guest_arrival(self, *guests):  # Добавление гостей в очередь
+
         for guest in guests:
             free_table = next((table for table in self.tables if table.is_free), None)  # Поиск свободного стола
-            if free_table:  # Если есть свободные столик
+            if free_table:
                 free_table.guests = guest.name
                 print(f'{guest.name} сел(-а) за стол номер {free_table.number}')
+                self.cafe_zal[free_table] = guest
                 guest.start()
                 # guest.join()
             else:
@@ -44,18 +48,16 @@ class Cafe:
         while not self.queue.empty():
             queue_guest = self.queue.get()
 
-            while not queue_guest.is_alive():  # Пока гостью не нашли свободный столик
-                for table in tables:
-                    for guest in guests:
-                        if guest.name == table.guests and not guest.is_alive():
-                            print(f'{guest.name} покушал(-а) и ушёл(ушла)')
-                            print(f'Стол номер {table.number} свободен')
-                            table.guests = queue_guest.name
-                            print(
-                                f'{queue_guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
-                            if not queue_guest.is_alive():
-                                queue_guest.start()
-                            break
+            while not queue_guest.is_alive():
+                for free_table, free_guest in self.cafe_zal.items():
+                    if not free_guest.is_alive():
+                        print(f'{free_guest.name} покушал(-а) и ушёл(ушла)')
+                        print(f'Стол номер {free_table.number} свободен')
+                        print(f'{queue_guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {free_table.number}')
+                        free_table.guests = queue_guest.name
+                        self.cafe_zal[free_table] = queue_guest
+                        queue_guest.start()
+                        break
 
 
 if __name__ == '__main__':
@@ -70,11 +72,13 @@ if __name__ == '__main__':
 
     guests = [Guest(name) for name in guests_names]
 
-    # Заполнение кафе столами
-    cafe = Cafe(*tables)
+    # print(*guests)
 
-    # Приём гостей
+    # # Заполнение кафе столами
+    cafe = Cafe(*tables)
+    #
+    # # Приём гостей
     cafe.guest_arrival(*guests)
 
-    # Обслуживание гостей
+    # # Обслуживание гостей
     cafe.discuss_guests()

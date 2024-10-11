@@ -70,13 +70,11 @@ if __name__ == '__main__':
 
     guests = [Guest(name) for name in guests_names]
 
-    # print(*guests)
-
-    # # Заполнение кафе столами
+    # Заполнение кафе столами
     cafe = Cafe(*tables)
-    #
-    # # Приём гостей
+
+    # Приём гостей
     cafe.guest_arrival(*guests)
 
-    # # Обслуживание гостей
+    # Обслуживание гостей
     cafe.discuss_guests()

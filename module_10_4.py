@@ -53,9 +53,9 @@ class Cafe:
                             table.guests = queue_guest.name
                             print(
                                 f'{queue_guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
-                            queue_guest.start()
+                            if not queue_guest.is_alive():
+                                queue_guest.start()
                             break
-                    break
 
 
 if __name__ == '__main__':

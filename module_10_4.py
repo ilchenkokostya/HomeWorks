@@ -44,7 +44,7 @@ class Cafe:
         while not self.queue.empty():
             queue_guest = self.queue.get()
 
-            while not queue_guest.is_alive():  # Пока гостью не нашли столик свободный
+            while not queue_guest.is_alive():  # Пока гостью не нашли свободный столик
                 for table in tables:
                     for guest in guests:
                         if guest.name == table.guests and not guest.is_alive():

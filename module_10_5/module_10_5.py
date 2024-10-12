@@ -17,7 +17,7 @@ if __name__ == '__main__':
     print(end - start)
 
     filenames = [f'./file {number}.txt' for number in range(1, 5)]
-    with multiprocessing.Pool(processes=5) as pool:
+    with multiprocessing.Pool(processes=4) as pool:
         start = datetime.datetime.now()
         pool.map(read_info, filenames)
     end = datetime.datetime.now()

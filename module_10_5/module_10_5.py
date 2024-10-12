@@ -14,11 +14,11 @@ if __name__ == '__main__':
     for i in range(1, 5):
         read_info(f'file {i}.txt')
     end = datetime.datetime.now()
-    print(end - start)
+    print(end - start, '(линейный)')
 
     filenames = [f'./file {number}.txt' for number in range(1, 5)]
     with multiprocessing.Pool(processes=4) as pool:
         start = datetime.datetime.now()
         pool.map(read_info, filenames)
     end = datetime.datetime.now()
-    print(end - start)
+    print(end - start, '(многопроцессный)')

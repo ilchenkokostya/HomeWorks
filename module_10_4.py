@@ -1,3 +1,4 @@
+# Очереди для обмена данными между потоками.
 import random
 from threading import Thread
 import time

@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     # Заполнение кафе столами
     cafe = Cafe(*tables)
-    #
+
     # Приём гостей
     cafe.guest_arrival(*guests)
 

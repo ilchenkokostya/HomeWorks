@@ -19,10 +19,14 @@ class Guest(Thread):  # Гость
     def __init__(self, name):
         super().__init__()
         self.name = name
-        self.ate = False  # Поел или нет
+        self.eat = False  # Поел или нет
 
     def run(self):
         time.sleep(random.randint(3, 10))
+
+    @property
+    def is_not_eat(self):
+        return self.eat is True  # Не поел
 
 
 class Cafe:
@@ -39,6 +43,7 @@ class Cafe:
                 free_table.guests = guest.name
                 print(f'{guest.name} сел(-а) за стол номер {free_table.number}')
                 self.cafe_zal[free_table] = guest  # Добавление гостя в кафе
+                guest.eat = True
                 guest.start()
                 # guest.join()
             else:
@@ -46,19 +51,25 @@ class Cafe:
                 print(f'{guest.name} в очереди')
 
     def discuss_guests(self):  # Обслуживание гостей
+        join_guest = []
         while not self.queue.empty():
             queue_guest = self.queue.get()
 
-            while not queue_guest.is_alive():  # Пока гостью не нашли свободный столик
+            while not queue_guest.is_not_eat:  # Пока гость не поел
                 for free_table, free_guest in self.cafe_zal.items():  # бегаем по кафе
                     if not free_guest.is_alive():
                         print(f'{free_guest.name} покушал(-а) и ушёл(ушла)')
                         print(f'Стол номер {free_table.number} свободен')
                         print(f'{queue_guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {free_table.number}')
                         free_table.guests = queue_guest.name
+                        queue_guest.eat = True
                         self.cafe_zal[free_table] = queue_guest
                         queue_guest.start()
+                        join_guest.append(queue_guest)
                         break
+        else:
+            [t.join() for t in join_guest]
+            print('Все гости вышли из кафе')
 
 
 if __name__ == '__main__':

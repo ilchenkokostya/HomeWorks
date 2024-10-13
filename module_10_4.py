@@ -26,7 +26,7 @@ class Guest(Thread):  # Гость
 
     @property
     def is_not_eat(self):
-        return self.eat is True  # Не поел
+        return self.eat is False  # Не поел
 
 
 class Cafe:
@@ -55,7 +55,7 @@ class Cafe:
         while not self.queue.empty():
             queue_guest = self.queue.get()
 
-            while not queue_guest.is_not_eat:  # Пока гость не поел
+            while queue_guest.is_not_eat:  # Пока гость не поел
                 for free_table, free_guest in self.cafe_zal.items():  # бегаем по кафе
                     if not free_guest.is_alive():
                         print(f'{free_guest.name} покушал(-а) и ушёл(ушла)')

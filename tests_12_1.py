@@ -5,7 +5,7 @@ class Runner:
     def __init__(self, name):
         self.name = name
         self.distance = 0
-
+ 
     def run(self):
         self.distance += 10
 
@@ -45,7 +45,7 @@ class RunnerTest(unittest.TestCase):
     def test_challenge(self):
         runner_1 = Runner('Kosta')
         runner_2 = Runner('Roman')
-        for i in range(10):
+        for i in range(20):
             if i % 2 == 0:
                 runner_1.run()
             else:

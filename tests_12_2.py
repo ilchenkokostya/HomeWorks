@@ -74,7 +74,7 @@ class TournamentTest(unittest.TestCase):
         self.all_results["Результат Усейна и Ника"] = result
 
     def test_b_andrey_and_nick(self):
-        turn = Tournament(90, self.runners['Andrey'], self.runners['Nick'])
+        turn = Tournament(self.DISTANCE, self.runners['Andrey'], self.runners['Nick'])
         result = turn.start()
         self.assertTrue(result[sorted(result)[-1]] == "Ник")
         self.all_results["Результат Андрея и Ника"] = result

@@ -68,26 +68,35 @@ class TournamentTest(unittest.TestCase):
                 print(f'{place}: {runner_name}')
 
     def test_a_usain_and_nick(self):
-        # turn_1 = Tournament(self.DISTANCE, self.runners['Usain'], self.runners['Nick'])
-        turn_1 = Tournament(self.DISTANCE, self.runners['Nick'], self.runners['Usain'])
-        result = turn_1.start()
+        turn = Tournament(self.DISTANCE, self.runners['Usain'], self.runners['Nick'])
+        result = turn.start()
         self.assertTrue(result[sorted(result)[-1]] == "Ник")
         self.all_results["Результат Усейна и Ника"] = result
 
     def test_b_andrey_and_nick(self):
-        turn_2 = Tournament(90, self.runners['Andrey'], self.runners['Nick'])
-        result = turn_2.start()
+        turn = Tournament(90, self.runners['Andrey'], self.runners['Nick'])
+        result = turn.start()
         self.assertTrue(result[sorted(result)[-1]] == "Ник")
         self.all_results["Результат Андрея и Ника"] = result
 
     def test_c_all_participants(self):
-        turn_3 = Tournament(self.DISTANCE, *self.runners.values())
-        result = turn_3.start()
+        turn = Tournament(self.DISTANCE, *self.runners.values())
+        result = turn.start()
         self.assertTrue(result[sorted(result)[-1]] == "Ник")
         self.all_results["Результат общего забега"] = result
 
-    def test_d_difference_participants(self):
-        self.assertNotEqual(self.runners['Andrey'].name, self.runners['Nick'].name, True)
+    def test_d_nick_andrey(self):
+        """Ситуация когда Ник начинает бежать первым и побеждает!!!"""
+        turn = Tournament(12, self.runners['Nick'], self.runners['Andrey'])
+        result = turn.start()
+        self.assertTrue(result[sorted(result)[-1]] == "Ник")
+        self.all_results["Результат когда Ник побеждает"] = result
+
+    def test_e_identical_participants(self):
+        """Ситуация когда участник бежит сам собой"""
+        turn = Tournament(self.DISTANCE, self.runners['Nick'], self.runners['Nick'])
+        result = turn.start()
+        self.assertNotEqual(result[1].name, result[2].name, True)
 
 
 if __name__ == '__main__':

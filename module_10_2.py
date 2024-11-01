@@ -4,7 +4,6 @@ import time
 
 
 class Knight(Thread):
-
     def __init__(self, name, power):
         super().__init__()
         self.name = name

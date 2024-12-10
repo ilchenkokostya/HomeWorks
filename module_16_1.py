@@ -15,12 +15,12 @@ async def root() -> dict:
 
 
 @app.get("/user/{user_id}", tags=["Страница пользователя"])
-async def root(user_id: int = 0) -> dict:
+async def root(user_id: int) -> dict:
     return {"message": f"Вы вошли как пользователь № {user_id}"}
 
 
 @app.get("/user", tags=["Страница пользователя"])
-async def root(username: str = None, age: int = 0) -> dict:
+async def root(username: str = 'NoneName', age: int = 0) -> dict:
     return {"message": f"Информация о пользователе. Имя: {username}, Возраст: {age}"}
 
 

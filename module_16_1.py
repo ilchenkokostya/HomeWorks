@@ -20,7 +20,7 @@ async def root(user_id: int = 0) -> dict:
 
 
 @app.get("/user", tags=["Страница пользователя"])
-async def root(username: str, age: int) -> dict:
+async def root(username: str = None, age: int = 0) -> dict:
     return {"message": f"Информация о пользователе. Имя: {username}, Возраст: {age}"}
 
 

@@ -9,17 +9,17 @@ async def root() -> dict:
     return {"message": "Главная страница"}
 
 
-@app.get("/user/admin", tags=["Страница администратора"])
+@app.get("/user/admin", tags=["Страница администратора 👨‍💼"])
 async def root() -> dict:
     return {"message": "Вы вошли как администратор"}
 
 
-@app.get("/user/{user_id}", tags=["Страница пользователя"])
+@app.get("/user/{user_id}", tags=["Страница пользователя 🙍"])
 async def root(user_id: int) -> dict:
     return {"message": f"Вы вошли как пользователь № {user_id}"}
 
 
-@app.get("/user", tags=["Страница пользователя"])
+@app.get("/user", tags=["Страница пользователя 🙍"])
 async def root(username: str = 'NoneName', age: int = 0) -> dict:
     return {"message": f"Информация о пользователе. Имя: {username}, Возраст: {age}"}
 

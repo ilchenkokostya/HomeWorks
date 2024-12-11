@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Path
-from typing import Annotated
+from typing import Annotated, Optional
 import uvicorn
 
 app = FastAPI()

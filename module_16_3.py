@@ -24,19 +24,19 @@ async def post_user(
 async def put_user(
         username: Annotated[str, Path(min_length=5, max_length=20, description="Enter username", example="UrbanUser")],
         age: Annotated[int, Path(ge=18, le=120, description="Enter age", example="24")],
-        user_id: Annotated[str, Path(description="Enter User ID", example="1")]) -> str:
-    if user_id not in users.keys():
+        user_id: Annotated[int, Path(ge=1, description="Enter User ID", example="1")]) -> str:
+    if str(user_id) not in users.keys():
         raise HTTPException(status_code=404, detail="User ID not found")
-    users[user_id] = f"Имя: {username}, возраст: {age}"
+    users[str(user_id)] = f"Имя: {username}, возраст: {age}"
     return f"User {user_id} has been updated"
 
 
 @app.delete("/user/{user_id}")
 async def delete_user(
-        user_id: Annotated[str, Path(description="Enter User ID", example="1")]) -> str:
-    if user_id not in users.keys():
+        user_id: Annotated[int, Path(ge=1, description="Enter User ID", example="1")]) -> str:
+    if str(user_id) not in users.keys():
         raise HTTPException(status_code=404, detail="User ID not found")
-    return f"User {user_id} {users.pop(user_id)} has been deleted"
+    return f"User {user_id} {users.pop(str(user_id))} has been deleted"
 
 
 if __name__ == '__main__':

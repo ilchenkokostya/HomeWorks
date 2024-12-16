@@ -1,18 +1,53 @@
 {% extends 'main.html'%}
 {% block crud_container %}
-    {% if user %}
-        <article class="card container fluid"></article>
-        <br>
-        <!-- Напишите свой код здесь (Вывод свойств объекта User) -->
-    {% else %}
-            <section class="container-fluid">
-                <h2 align="center"> Users </h2>
-                <br>
-                <div class="card">
-                    <ul class="list-group list-group-flush">
-                        <!-- Напишите свой код здесь (перебор пользователей) -->
-                    </ul>
-                </div>
-            </section>
-    {% endif %}
+
+{% if user %}
+<article class="card container fluid">
+    <br>
+    <!-- Напишите свой код здесь (Вывод свойств объекта User) -->
+    <h2>ID: {{user.id}}</h2>
+    <p>
+        <strong>Name: {{user.username}} age: {{user.age}} </strong>
+    </p>
+</article>
+{% else %}
+
+<section class="container-fluid">
+    <h2 align="center">Add new user</h2>
+    <form action="/" method="POST">
+        <div class="form-group">
+
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Add new username" value=""
+                   id="username" aria-label="Add new username" aria-describedby="basic-addon1">
+
+            <label for="age">User age</label>
+            <input type="text" class="form-control" name="age" placeholder="Add new user age" value=""
+                   id="age" aria-label="Add new user age" aria-describedby="basic-addon1">
+
+            <button type="submit" class="btn btn-primary" id="basic-addon1" data-mdb-ripple-color="dark"
+                    data-mdb-placement="top">
+                Add
+            </button>
+        </div>
+    </form>
+</section>
+
+
+<section class="container-fluid">
+    <h2 align="center"> Users List</h2>
+    <br>
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <!-- Напишите свой код здесь (перебор пользователей) -->
+            {% for user in users %}
+            <li class="list-group-item">
+                {{ user.id }}
+                <a href="/user/{{user.id}}">{{user.username}} {{user.age}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
 {% endblock %}

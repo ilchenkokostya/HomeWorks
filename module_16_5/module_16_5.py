@@ -1,9 +1,10 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, Form
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field, ConfigDict
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
-app = FastAPI()
+app = FastAPI(swagger_ui_parameters={"tryItOutEnabled": True}, debug=True)
 templates = Jinja2Templates(directory="templates")
 users = []
 
@@ -16,16 +17,22 @@ class User(BaseModel):
     model_config = ConfigDict(extra='forbid')
 
 
-@app.get("/user")
-async def get_users() -> list:
-    return users
+@app.get("/")
+async def get_all_users(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("users.html", {"request": request, "users": users})
 
 
-@app.post("/user/{username}/{age}")
-async def post_user(user: User) -> list:
-    user.id = max((i.id for i in users), default=0) + 1
+@app.get("/user/{user_id}")
+def get_users(request: Request, user_id: int) -> HTMLResponse:
+    return templates.TemplateResponse("users.html", {"request": request, "user": users[user_id - 1]})
+
+
+@app.post("/")
+async def post_user(request: Request, username: str = Form(), age: int = Form()) -> HTMLResponse:
+    new_user_id = max((i.id for i in users), default=0) + 1
+    user = User(id=new_user_id, username=username, age=age)
     users.append(user)
-    return users
+    return templates.TemplateResponse("users.html", {"request": request, "users": users})
 
 
 @app.put("/user/{user_id}/{username}/{age}")

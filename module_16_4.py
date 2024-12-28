@@ -11,7 +11,7 @@ class User(BaseModel):
     id: int = Field(ge=1, description="Enter User ID")
     username: str = Field(min_length=5, max_length=20, description="Enter username")
     age: int = Field(ge=18, le=120, description="Enter age")
-    # запрет на доп поля
+    # запрет на доп п
     model_config = ConfigDict(extra='forbid')
 
 
